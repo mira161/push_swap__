@@ -10,94 +10,74 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include <stdlib.h>
 
 static int	count_words(const char *s, char c)
 {
-	int	count;
-	int	i;
+	int	count = 0;
+	int	in_word = 0;
 
-	count = 0;
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i] && s[i] != c)
+		if (*s != c && in_word == 0)
 		{
+			in_word = 1;
 			count++;
-			while (s[i] && s[i] != c)
-				i++;
 		}
+		else if (*s == c)
+			in_word = 0;
+		s++;
 	}
 	return (count);
 }
 
-static char	*copy_word(const char *start, int len)
+static char	*malloc_word(const char *s, int len)
 {
-	char	*word;
-	int		i;
+	char	*word = malloc(len + 1);
+	int		i = 0;
 
-	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
-	i = 0;
 	while (i < len)
 	{
-		word[i] = start[i];
+		word[i] = s[i];
 		i++;
 	}
 	word[i] = '\0';
 	return (word);
 }
 
-static void	free_all(char **words, int i)
+static void	free_all(char **split, int i)
 {
-	while (i--)
-		free(words[i]);
-	free(words);
+	while (--i >= 0)
+		free(split[i]);
+	free(split);
 }
 
-static int	fill_words(char **result, const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	int	i;
-	int	word_index;
-	int	len;
+	char	**split;
+	int		i = 0, len;
 
-	i = 0;
-	word_index = 0;
-	while (s[i])
+	if (!s || !(split = malloc(sizeof(char *) * (count_words(s, c) + 1))))
+		return (NULL);
+	while (*s)
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
+		if (*s != c)
 		{
 			len = 0;
-			while (s[i + len] && s[i + len] != c)
+			while (s[len] && s[len] != c)
 				len++;
-			result[word_index] = copy_word(&s[i], len);
-			if (!result[word_index])
-				return (free_all(result, word_index), 0);
-			i += len;
-			word_index++;
+			if (!(split[i] = malloc_word(s, len)))
+				return (free_all(split, i), NULL);
+			s += len;
+			i++;
 		}
+		else
+			s++;
 	}
-	result[word_index] = NULL;
-	return (1);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**result;
-
-	if (!s)
-		return (NULL);
-	result = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
-	if (!result)
-		return (NULL);
-	if (!fill_words(result, s, c))
-		return (NULL);
-	return (result);
+	split[i] = NULL;
+	return (split);
 }
 
 /*int main()

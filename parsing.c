@@ -24,6 +24,18 @@ t_node	*new_node(int value)
 	return (new);
 }
 
+void	free_list(t_node *head)
+{
+	t_node	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
 void	append_node(t_node **head, t_node *node)
 {
 	t_node	*temp;
