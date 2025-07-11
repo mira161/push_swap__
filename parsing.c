@@ -18,7 +18,7 @@ t_node	*new_node(int value)
 
 	new = (t_node *)malloc(sizeof (t_node));
 	if (!new)
-		exit_error();
+		return (NULL);
 	new->value = value;
 	new->next = NULL;
 	return (new);
@@ -63,7 +63,10 @@ void	check_duplicates(t_node *head)
 		while (temp)
 		{
 			if (current->value == temp->value)
+			{
+				free_list(head);
 				exit_error();
+			}
 			temp = temp->next;
 		}
 		current = current->next;
@@ -83,12 +86,15 @@ void	parse_input(int argc, char **argv, t_node **stack_a)
 	{
 		temp = ft_split(argv[i], ' ');
 		if (!temp)
-			exit_error();
+			exit_error_with_cleanup(stack_a, NULL, NULL);
 		j = 0;
 		while (temp[j])
 		{
-			value = ft_atoi(temp[j]);
+			if (!ft_atoi_safe(temp[j], &value))
+				exit_error_with_cleanup(stack_a, temp, NULL);
 			node = new_node(value);
+			if (!node)
+				exit_error_with_cleanup(stack_a, temp, NULL);
 			append_node(stack_a, node);
 			free(temp[j]);
 			j++;

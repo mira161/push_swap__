@@ -25,6 +25,7 @@ typedef struct n_node
 }	t_node;
 
 int		ft_atoi(const char *nptr);
+int		ft_atoi_safe(const char *nptr, int *result);
 int		list_size(t_node *head);
 int		find_index(int *arr, int size, int value);
 int		find_min(t_node *stack);
@@ -32,6 +33,7 @@ int		find_pos(t_node *stack, int value);
 int		find_max_index(t_node *stack);
 int		is_sorted(t_node *stack);
 void	exit_error(void);
+void	exit_error_with_cleanup(t_node **stack_a, char **split_array, int *arr);
 void	check_overflow(long result, int sign);
 void	append_node(t_node **head, t_node *node);
 void	check_duplicates(t_node *head);

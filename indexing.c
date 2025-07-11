@@ -87,7 +87,7 @@ void	index_stack(t_node *head)
 	size = list_size(head);
 	arr = (int *)malloc(sizeof(int) * size);
 	if (!arr)
-		exit_error();
+		exit_error_with_cleanup(&head, NULL, NULL);
 	copy_to_array(head, arr);
 	sort_array(arr, size);
 	node = head;
