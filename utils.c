@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "pushswap.h"
 
 int	find_min(t_node *stack)
 {
@@ -59,7 +59,7 @@ void	move_to_top(t_node **stack, int pos)
 	}
 }
 
-void print_stack(t_node *stack)
+void	print_stack(t_node *stack)
 {
 	while (stack)
 	{

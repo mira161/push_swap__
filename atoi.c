@@ -12,7 +12,7 @@
 
 #include "pushswap.h"
 
-void exit_error(void)
+void	exit_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
@@ -75,6 +75,24 @@ int	ft_atoi(const char *nptr)
 	return (sign * result);
 }
 
+static const char	*skip_whitespace(const char *nptr)
+{
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	return (nptr);
+}
+
+static const char	*parse_sign(const char *nptr, int *sign)
+{
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			*sign = -1;
+		nptr++;
+	}
+	return (nptr);
+}
+
 int	ft_atoi_safe(const char *nptr, int *result)
 {
 	int		sign;
@@ -82,14 +100,8 @@ int	ft_atoi_safe(const char *nptr, int *result)
 
 	sign = 1;
 	temp_result = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign = -1;
-		nptr++;
-	}
+	nptr = skip_whitespace(nptr);
+	nptr = parse_sign(nptr, &sign);
 	if (*nptr < '0' || *nptr > '9')
 		return (0);
 	while (*nptr >= '0' && *nptr <= '9')

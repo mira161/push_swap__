@@ -24,7 +24,7 @@ void	sa(t_node **stack_a)
 	temp->next = tmp->next;
 	tmp->next = temp;
 	*stack_a = tmp;
-    write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_node **stack_b)
@@ -39,14 +39,14 @@ void	sb(t_node **stack_b)
 	temp->next = tmp->next;
 	tmp->next = temp;
 	*stack_b = tmp;
-    write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_node **stack_a, t_node **stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
-    write(1, "ss\n", 3);
+	write(1, "ss\n", 3);
 }
 
 /*int main(void)

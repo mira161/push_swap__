@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "pushswap.h"
 
 void	pa(t_node **stack_a, t_node **stack_b)
 {
@@ -27,7 +27,8 @@ void	pa(t_node **stack_a, t_node **stack_b)
 
 void	pb(t_node **stack_a, t_node **stack_b)
 {
-	t_node *temp;
+	t_node	*temp;
+
 	if (*stack_a == NULL)
 		return ;
 	temp = *stack_a;

@@ -73,33 +73,39 @@ void	check_duplicates(t_node *head)
 	}
 }
 
-void	parse_input(int argc, char **argv, t_node **stack_a)
+static void	process_argument(char *arg, t_node **stack_a)
 {
-	int		i;
 	char	**temp;
 	int		value;
 	int		j;
 	t_node	*node;
 
+	temp = ft_split(arg, ' ');
+	if (!temp)
+		exit_error_with_cleanup(stack_a, NULL, NULL);
+	j = 0;
+	while (temp[j])
+	{
+		if (!ft_atoi_safe(temp[j], &value))
+			exit_error_with_cleanup(stack_a, temp, NULL);
+		node = new_node(value);
+		if (!node)
+			exit_error_with_cleanup(stack_a, temp, NULL);
+		append_node(stack_a, node);
+		free(temp[j]);
+		j++;
+	}
+	free(temp);
+}
+
+void	parse_input(int argc, char **argv, t_node **stack_a)
+{
+	int	i;
+
 	i = 1;
 	while (i < argc)
 	{
-		temp = ft_split(argv[i], ' ');
-		if (!temp)
-			exit_error_with_cleanup(stack_a, NULL, NULL);
-		j = 0;
-		while (temp[j])
-		{
-			if (!ft_atoi_safe(temp[j], &value))
-				exit_error_with_cleanup(stack_a, temp, NULL);
-			node = new_node(value);
-			if (!node)
-				exit_error_with_cleanup(stack_a, temp, NULL);
-			append_node(stack_a, node);
-			free(temp[j]);
-			j++;
-		}
-		free(temp);
+		process_argument(argv[i], stack_a);
 		i++;
 	}
 	check_duplicates(*stack_a);

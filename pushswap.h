@@ -60,7 +60,7 @@ void	sort_four(t_node **stack_a, t_node **stack_b);
 void	sort_five(t_node **stack_a, t_node **stack_b);
 void	radix_sort(t_node **stack_a, t_node **stack_b);
 void	push_swap(t_node **stack_a, t_node **stack_b);
-void 	print_stack(t_node *stack);
+void	print_stack(t_node *stack);
 char	**ft_split(char const *s, char c);
 t_node	*new_node(int value);
 

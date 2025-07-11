@@ -10,26 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "pushswap.h"
 
-void  sort_two(t_node **stack_a)
+void	sort_two(t_node **stack_a)
 {
-  if (!*stack_a || !(*stack_a)->next)
+	if (!*stack_a || !(*stack_a)->next)
 		return ;
-  if ((*stack_a)->value > (*stack_a)->next->value)
+	if ((*stack_a)->value > (*stack_a)->next->value)
 		sa(stack_a);
 }
 
-void  sort_three(t_node **stack_a)
+void	sort_three(t_node **stack_a)
 {
-  int	first;
+	int	first;
 	int	second;
 	int	third;
 
 	first = (*stack_a)->value;
 	second = (*stack_a)->next->value;
 	third = (*stack_a)->next->next->value;
-
 	if (first > second && second < third && first < third)
 		sa(stack_a);
 	else if (first > second && second > third)

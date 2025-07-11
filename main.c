@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "pushswap.h"
 
 int	is_sorted(t_node *stack)
 {
@@ -23,7 +23,7 @@ int	is_sorted(t_node *stack)
 	return (1);
 }
 
-void push_swap(t_node **stack_a, t_node **stack_b)
+void	push_swap(t_node **stack_a, t_node **stack_b)
 {
 	int	size;
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 		return (0);
 	parse_input(argc, argv, &stack_a);
 	index_stack(stack_a);
-  print_stack(stack_a);
+	print_stack(stack_a);
 	push_swap(&stack_a, &stack_b);
 	free_list(stack_a);
 	free_list(stack_b);

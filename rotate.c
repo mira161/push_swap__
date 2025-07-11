@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pushswap.h"
+#include "pushswap.h"
 
 void	ra(t_node **stack_a)
 {
