@@ -6,46 +6,11 @@
 /*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 08:25:28 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/01 10:36:13 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 12:24:18 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-void	exit_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-void	exit_error_with_cleanup(t_node **stack_a, char **split_array, int *arr)
-{
-	int	i;
-
-	if (stack_a && *stack_a)
-		free_list(*stack_a);
-	if (split_array)
-	{
-		i = 0;
-		while (split_array[i])
-		{
-			free(split_array[i]);
-			i++;
-		}
-		free(split_array);
-	}
-	if (arr)
-		free(arr);
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-void	check_overflow(long result, int sign)
-{
-	if ((sign == 1 && result > INT_MAX)
-		|| (sign == -1 && - result < INT_MIN))
-		exit_error();
-}
 
 int	ft_atoi(const char *nptr)
 {
@@ -108,7 +73,7 @@ int	ft_atoi_safe(const char *nptr, int *result)
 	{
 		temp_result = temp_result * 10 + (*nptr - '0');
 		if ((sign == 1 && temp_result > INT_MAX)
-			|| (sign == -1 && -temp_result < INT_MIN))
+			|| (sign == -1 && - temp_result < INT_MIN))
 			return (0);
 		nptr++;
 	}

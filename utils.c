@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miwehbe <miwehbe@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 08:40:12 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/08 08:40:12 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 12:07:57 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,4 @@ void	move_to_top(t_node **stack, int pos)
 		while (pos--)
 			rra(stack);
 	}
-}
-
-void	print_stack(t_node *stack)
-{
-	while (stack)
-	{
-		printf("%d ", stack->value);
-		stack = stack->next;
-	}
-	printf("\n");
 }

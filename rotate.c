@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miwehbe <miwehbe@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 10:59:23 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/05 10:59:23 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 13:22:35 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ra(t_node **stack_a)
 	t_node	*temp;
 	t_node	*last;
 
-	if (!*stack_a || !(*stack_a)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	temp = *stack_a;
 	*stack_a = temp->next;
@@ -26,15 +26,15 @@ void	ra(t_node **stack_a)
 	while (last->next)
 		last = last->next;
 	last->next = temp;
-  write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
-void  rb(t_node **stack_b)
+void	rb(t_node **stack_b)
 {
-  t_node	*temp;
+	t_node	*temp;
 	t_node	*last;
 
-	if (!*stack_b || !(*stack_b)->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	temp = *stack_b;
 	*stack_b = temp->next;
@@ -43,14 +43,14 @@ void  rb(t_node **stack_b)
 	while (last->next)
 		last = last->next;
 	last->next = temp;
-  write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
-void	rr(t_node **stack_a,t_node **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b)
 {
-  ra(stack_a);
-  rb(stack_b);
-  write(1, "rr\n", 3);
+	ra(stack_a);
+	rb(stack_b);
+	write(1, "rr\n", 3);
 }
 
 /*int main(void)

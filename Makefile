@@ -2,7 +2,7 @@ NAME = push_swap
 
 SRCS = atoi.c indexing.c parsing.c push.c \
        rotate.c reverserotate.c smallsort.c split.c \
-       utils.c radix.c swap.c main.c
+       utils.c radix.c swap.c main.c utils2.c
 
 OBJS = $(SRCS:.c=.o)
 

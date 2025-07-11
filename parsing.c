@@ -6,7 +6,7 @@
 /*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 10:43:12 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/01 13:36:59 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 12:22:54 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ t_node	*new_node(int value)
 	new->value = value;
 	new->next = NULL;
 	return (new);
-}
-
-void	free_list(t_node *head)
-{
-	t_node	*tmp;
-
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
 }
 
 void	append_node(t_node **head, t_node *node)

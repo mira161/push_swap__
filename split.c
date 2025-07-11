@@ -6,7 +6,7 @@
 /*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:13:10 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/01 11:37:27 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 13:25:03 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static char	*malloc_word(const char *s, int len)
 	int		i;
 
 	word = malloc(len + 1);
-	i = 0;
 	if (!word)
 		return (NULL);
+	i = 0;
 	while (i < len)
 	{
 		word[i] = s[i];
@@ -58,18 +58,12 @@ static void	free_all(char **split, int i)
 	free(split);
 }
 
-char	**ft_split(const char *s, char c)
+static int	fill_split(char **split, const char *s, char c)
 {
-	char	**split;
-	int		i;
-	int		len;
+	int	i;
+	int	len;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	split = malloc(sizeof(char *) * (count_words(s, c) + 1));
-	if (!split)
-		return (NULL);
 	while (*s)
 	{
 		if (*s != c)
@@ -79,7 +73,10 @@ char	**ft_split(const char *s, char c)
 				len++;
 			split[i] = malloc_word(s, len);
 			if (!split[i])
-				return (free_all(split, i), NULL);
+			{
+				free_all(split, i);
+				return (0);
+			}
 			s += len;
 			i++;
 		}
@@ -87,6 +84,20 @@ char	**ft_split(const char *s, char c)
 			s++;
 	}
 	split[i] = NULL;
+	return (1);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**split;
+
+	if (!s)
+		return (NULL);
+	split = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!split)
+		return (NULL);
+	if (!fill_split(split, s, c))
+		return (NULL);
 	return (split);
 }
 

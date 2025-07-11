@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverserotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miwehbe <miwehbe@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: miwehbe <miwehbe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 08:50:06 by miwehbe           #+#    #+#             */
-/*   Updated: 2025/07/06 08:50:06 by miwehbe          ###   ########.fr       */
+/*   Updated: 2025/07/11 13:21:19 by miwehbe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rra(t_node **stack_a)
 	temp->next = NULL;
 	last->next = *stack_a;
 	*stack_a = last;
-    write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_node **stack_b)
@@ -34,7 +34,7 @@ void	rrb(t_node **stack_b)
 	t_node	*temp;
 	t_node	*last;
 
-	if (!*stack_b || !(*stack_b)->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
 	temp = *stack_b;
 	while (temp->next->next)
@@ -43,14 +43,14 @@ void	rrb(t_node **stack_b)
 	temp->next = NULL;
 	last->next = *stack_b;
 	*stack_b = last;
-    write(1, "rrb\n", 4);
+	write(1, "rrb\n", 4);
 }
 
-void		rrr(t_node **stack_a,t_node **stack_b)
+void	rrr(t_node **stack_a, t_node **stack_b)
 {
-  rra(stack_a);
-  rrb(stack_b);
-  write(1, "rrr\n", 4);
+	rra(stack_a);
+	rrb(stack_b);
+	write(1, "rrr\n", 4);
 }
 
 /*int main(void)
